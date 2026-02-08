@@ -82,18 +82,6 @@ body {
     padding: 15px 0;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo-img {
-    width: 45px;
-    height: 45px;
-    object-fit: contain;
-}
-
 .logo h1 {
     font-size: 1.4rem;
     color: var(--secondary-color);
@@ -1222,11 +1210,6 @@ section {
 
     .nav-menu.active {
         left: 0;
-    }
-
-    .logo-img {
-        width: 35px;
-        height: 35px;
     }
 
     .logo h1 {
