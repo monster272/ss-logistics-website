@@ -1202,16 +1202,17 @@ section {
         display: inline-block !important;
         background: var(--primary-color);
         color: #fff !important;
-        padding: 6px 16px;
+        padding: 8px 20px;
         border-radius: 5px;
         font-weight: 600;
         font-size: 0.85rem;
-        margin-left: 0;
-        margin-top: 5px;
+        margin-top: 8px;
+        text-decoration: none;
     }
 
     .mobile-get-in-touch:hover {
         background: var(--secondary-color);
+        color: #fff !important;
     }
 
     .nav-menu li:last-child {
