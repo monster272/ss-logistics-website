@@ -52,7 +52,7 @@ body {
 
 .contact-info i {
     margin-right: 5px;
-    color: var(--primary-color);
+    color: #fff;
 }
 
 .top-links a {
@@ -64,6 +64,10 @@ body {
 
 .top-links a:hover {
     color: var(--primary-color);
+}
+
+.mobile-get-in-touch {
+    display: none;
 }
 
 /* ========== HEADER ========== */
@@ -1192,6 +1196,26 @@ section {
         display: block;
         margin-right: 0;
         margin-bottom: 4px;
+    }
+
+    .mobile-get-in-touch {
+        display: inline-block !important;
+        background: var(--primary-color);
+        color: #fff !important;
+        padding: 6px 16px;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+
+    .mobile-get-in-touch:hover {
+        background: var(--secondary-color);
+    }
+
+    .nav-menu li:last-child {
+        display: none;
     }
 
     .nav-menu {
