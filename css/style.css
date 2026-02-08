@@ -27,6 +27,10 @@ a {
     -webkit-tap-highlight-color: transparent;
 }
 
+#contactForm-section {
+    scroll-margin-top: 100px;
+}
+
 img {
     max-width: 100%;
     height: auto;
