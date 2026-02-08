@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Shipment - Nagpur Delhi Transport Co. Rewa</title>
+    <meta name="description" content="Book your shipment with Nagpur Delhi Transport Co. Rewa. Fast, reliable transport and courier services across India.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .booking-hero {
+            background: linear-gradient(rgba(0, 78, 137, 0.9), rgba(26, 26, 46, 0.9));
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .booking-hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .booking-hero p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .booking-section {
+            padding: 60px 0;
+            background: var(--light-color);
+        }
+
+        .booking-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 40px;
+        }
+
+        .booking-steps {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            background: #e9ecef;
+            color: #666;
+        }
+
+        .step.active {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .step.completed {
+            background: var(--success-color);
+            color: #fff;
+        }
+
+        .step-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .step.active .step-number,
+        .step.completed .step-number {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        .form-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+
+        .form-section h3 i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-grid .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group-book {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group-book label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .form-group-book label .required {
+            color: var(--danger-color);
+        }
+
+        .form-group-book input,
+        .form-group-book select,
+        .form-group-book textarea {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group-book input:focus,
+        .form-group-book select:focus,
+        .form-group-book textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 14px 30px;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-secondary i,
+        .btn-primary i {
+            margin-right: 8px;
+        }
+
+        .booking-summary {
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .booking-summary h4 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-row .label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .summary-row .value {
+            color: var(--text-color);
+        }
+
+        .booking-success {
+            text-align: center;
+            padding: 50px 20px;
+            display: none;
+        }
+
+        .booking-success i {
+            font-size: 5rem;
+            color: var(--success-color);
+            margin-bottom: 20px;
+        }
+
+        .booking-success h2 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .booking-success p {
+            color: #666;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+        }
+
+        .back-home {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .back-home:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .booking-container {
+                padding: 25px 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn-secondary,
+            .btn-primary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> +91 98739 23836</span>
+                    <span><i class="fas fa-envelope"></i> info@nagpurdelhitransport.com</span>
+                </div>
+                <div class="top-links">
+                    <a href="../index.html#track">Track Shipment</a>
+                    <a href="login.html">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="../index.html" style="text-decoration: none;">
+                        <h1>NAGPUR DELHI <span>TRANSPORT CO.</span></h1>
+                        <p class="tagline">Rewa | Swift. Secure. Reliable.</p>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#services">Services</a></li>
+                    <li><a href="../index.html#track">Track</a></li>
+                    <li><a href="../index.html#rates">Rates</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                    <li><a href="book-shipment.html" class="btn-book active">Book Now</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Booking Hero -->
+    <div class="booking-hero">
+        <div class="container">
+            <h1><i class="fas fa-box"></i> Book Your Shipment</h1>
+            <p>Fill in the details below and we'll take care of the rest</p>
+        </div>
+    </div>
+
+    <!-- Booking Section -->
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-container">
+                <!-- Steps Indicator -->
+                <div class="booking-steps">
+                    <div class="step active" id="step1Indicator">
+                        <span class="step-number">1</span> Pickup & Delivery
+                    </div>
+                    <div class="step" id="step2Indicator">
+                        <span class="step-number">2</span> Package Details
+                    </div>
+                    <div class="step" id="step3Indicator">
+                        <span class="step-number">3</span> Review & Book
+                    </div>
+                </div>
+
+                <form id="bookingForm" action="https://formsubmit.co/whosammr@gmail.com" method="POST">
+                    <!-- FormSubmit config -->
+                    <input type="hidden" name="_subject" value="New Booking - Nagpur Delhi Transport Co.">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+
+                    <!-- Step 1: Pickup & Delivery -->
+                    <div class="form-section active" id="step1">
+                        <h3><i class="fas fa-map-marker-alt"></i> Pickup & Delivery Details</h3>
+                        <div class="form-grid">
+                            <div class="form-group-book">
+                                <label>Sender Name <span class="required">*</span></label>
+                                <input type="text" name="Sender Name" id="senderName" placeholder="Full name" required>
+                            </div>
+                            <div class="form-group-book">
+                                <label>Sender Phone <span class="required">*</span></label>
+                                <input type="tel" name="Sender Phone" id="senderPhone" placeholder="10-digit mobile number" required>
+                            </div>
+                            <div class="form-group-book full-width">
+                                <label>Pickup Address <span class="required">*</span></label>
+                                <textarea name="Pickup Address" id="pickupAddress" rows="2" placeholder="Full pickup address with pincode" required></textarea>
+                            </div>
+                            <div class="form-group-book">
+                                <label>Pickup City <span class="required">*</span></label>
+                                <input type="text" name="Pickup City" id="pickupCity" placeholder="City name" required>
+                            </div>
+                            <div class="form-group-book">
+                                <label>Pickup Pincode <span class="required">*</span></label>
+                                <input type="text" name="Pickup Pincode" id="pickupPincode" placeholder="6-digit pincode" required>
+                            </div>
+
+                            <div class="form-group-book" style="grid-column: 1 / -1; margin-top: 15px;">
+                                <h3 style="margin-bottom: 15px;"><i class="fas fa-map-pin"></i> Delivery Details</h3>
+                            </div>
+
+                            <div class="form-group-book">
+                                <label>Receiver Name <span class="required">*</span></label>
+                                <input type="text" name="Receiver Name" id="receiverName" placeholder="Full name" required>
+                            </div>
+                            <div class="form-group-book">
+                                <label>Receiver Phone <span class="required">*</span></label>
+                                <input type="tel" name="Receiver Phone" id="receiverPhone" placeholder="10-digit mobile number" required>
+                            </div>
+                            <div class="form-group-book full-width">
+                                <label>Delivery Address <span class="required">*</span></label>
+                                <textarea name="Delivery Address" id="deliveryAddress" rows="2" placeholder="Full delivery address with pincode" required></textarea>
+                            </div>
+                            <div class="form-group-book">
+                                <label>Delivery City <span class="required">*</span></label>
+                                <input type="text" name="Delivery City" id="deliveryCity" placeholder="City name" required>
+                            </div>
+                            <div class="form-group-book">
+                                <label>Delivery Pincode <span class="required">*</span></label>
+                                <input type="text" name="Delivery Pincode" id="deliveryPincode" placeholder="6-digit pincode" required>
+                            </div>
+                        </div>
+
+                        <div class="btn-group" style="justify-content: flex-end;">
+                            <button type="button" class="btn-primary" onclick="nextStep(2)">
+                                Next <i class="fas fa-arrow-right" style="margin-left: 8px; margin-right: 0;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Package Details -->
+                    <div class="form-section" id="step2">
+                        <h3><i class="fas fa-box-open"></i> Package Details</h3>
+                        <div class="form-grid">
+                            <div class="form-group-book">
+                                <label>Package Type <span class="required">*</span></label>
+                                <select name="Package Type" id="packageType" required>
+                                    <option value="">Select type</option>
+                                    <option value="Document">Document / Envelope</option>
+                                    <option value="Small Parcel">Small Parcel (up to 5 kg)</option>
+                                    <option value="Medium Parcel">Medium Parcel (5-20 kg)</option>
+                                    <option value="Large Parcel">Large Parcel (20-50 kg)</option>
+                                    <option value="Heavy Cargo">Heavy Cargo (50+ kg)</option>
+                                    <option value="Household Goods">Household Goods</option>
+                                    <option value="Fragile Items">Fragile Items</option>
+                                </select>
+                            </div>
+                            <div class="form-group-book">
+                                <label>Approximate Weight (kg) <span class="required">*</span></label>
+                                <input type="number" name="Weight (kg)" id="packageWeight" placeholder="Weight in kg" min="0.1" step="0.1" required>
+                            </div>
+                            <div class="form-group-book">
+                                <label>Service Type <span class="required">*</span></label>
+                                <select name="Service Type" id="bookServiceType" required>
+                                    <option value="">Select service</option>
+                                    <option value="Express (1-2 days)">Express (1-2 days)</option>
+                                    <option value="Standard (3-5 days)">Standard (3-5 days)</option>
+                                    <option value="Economy (5-7 days)">Economy (5-7 days)</option>
+                                </select>
+                            </div>
+                            <div class="form-group-book">
+                                <label>Preferred Pickup Date</label>
+                                <input type="date" name="Pickup Date" id="pickupDate">
+                            </div>
+                            <div class="form-group-book full-width">
+                                <label>Package Description</label>
+                                <textarea name="Package Description" id="packageDesc" rows="3" placeholder="Describe the contents of your package (optional)"></textarea>
+                            </div>
+                            <div class="form-group-book full-width">
+                                <label>Special Instructions</label>
+                                <textarea name="Special Instructions" id="specialInstructions" rows="2" placeholder="Any special handling instructions (optional)"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn-secondary" onclick="prevStep(1)">
+                                <i class="fas fa-arrow-left"></i> Back
+                            </button>
+                            <button type="button" class="btn-primary" onclick="nextStep(3)">
+                                Review Booking <i class="fas fa-arrow-right" style="margin-left: 8px; margin-right: 0;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Review & Confirm -->
+                    <div class="form-section" id="step3">
+                        <h3><i class="fas fa-clipboard-check"></i> Review Your Booking</h3>
+
+                        <div class="booking-summary">
+                            <h4><i class="fas fa-map-marker-alt"></i> Pickup Details</h4>
+                            <div class="summary-row">
+                                <span class="label">Sender:</span>
+                                <span class="value" id="sumSender"></span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Phone:</span>
+                                <span class="value" id="sumSenderPhone"></span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Pickup Address:</span>
+                                <span class="value" id="sumPickup"></span>
+                            </div>
+                        </div>
+
+                        <div class="booking-summary">
+                            <h4><i class="fas fa-map-pin"></i> Delivery Details</h4>
+                            <div class="summary-row">
+                                <span class="label">Receiver:</span>
+                                <span class="value" id="sumReceiver"></span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Phone:</span>
+                                <span class="value" id="sumReceiverPhone"></span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Delivery Address:</span>
+                                <span class="value" id="sumDelivery"></span>
+                            </div>
+                        </div>
+
+                        <div class="booking-summary">
+                            <h4><i class="fas fa-box-open"></i> Package Details</h4>
+                            <div class="summary-row">
+                                <span class="label">Package Type:</span>
+                                <span class="value" id="sumPackageType"></span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Weight:</span>
+                                <span class="value" id="sumWeight"></span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Service:</span>
+                                <span class="value" id="sumService"></span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="label">Pickup Date:</span>
+                                <span class="value" id="sumDate"></span>
+                            </div>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn-secondary" onclick="prevStep(2)">
+                                <i class="fas fa-arrow-left"></i> Back
+                            </button>
+                            <button type="submit" class="btn-primary" id="submitBooking">
+                                <i class="fas fa-check-circle"></i> Confirm Booking
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div class="booking-success" id="bookingSuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>Booking Request Submitted!</h2>
+                    <p>Your booking request has been sent to our team. We will contact you shortly to confirm the pickup and provide a final quote.</p>
+                    <a href="../index.html" class="back-home"><i class="fas fa-home"></i> Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none;">
+                <p>&copy; 2025 Nagpur Delhi Transport Co. Rewa. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="../index.html#contact">Contact Us</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Set min date for pickup to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('pickupDate').setAttribute('min', today);
+
+        let currentStep = 1;
+
+        function nextStep(step) {
+            // Validate current step fields before moving
+            const currentSection = document.getElementById('step' + currentStep);
+            const requiredFields = currentSection.querySelectorAll('[required]');
+            let valid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = 'var(--danger-color)';
+                    valid = false;
+                } else {
+                    field.style.borderColor = '#ddd';
+                }
+            });
+
+            if (!valid) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // If moving to step 3, populate summary
+            if (step === 3) {
+                populateSummary();
+            }
+
+            // Update step indicators
+            document.getElementById('step' + currentStep + 'Indicator').classList.remove('active');
+            document.getElementById('step' + currentStep + 'Indicator').classList.add('completed');
+            document.getElementById('step' + step + 'Indicator').classList.add('active');
+
+            // Show next section
+            document.getElementById('step' + currentStep).classList.remove('active');
+            document.getElementById('step' + step).classList.add('active');
+
+            currentStep = step;
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        }
+
+        function prevStep(step) {
+            document.getElementById('step' + currentStep + 'Indicator').classList.remove('active');
+            document.getElementById('step' + step + 'Indicator').classList.remove('completed');
+            document.getElementById('step' + step + 'Indicator').classList.add('active');
+
+            document.getElementById('step' + currentStep).classList.remove('active');
+            document.getElementById('step' + step).classList.add('active');
+
+            currentStep = step;
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        }
+
+        function populateSummary() {
+            document.getElementById('sumSender').textContent = document.getElementById('senderName').value;
+            document.getElementById('sumSenderPhone').textContent = document.getElementById('senderPhone').value;
+            document.getElementById('sumPickup').textContent = document.getElementById('pickupAddress').value + ', ' + document.getElementById('pickupCity').value + ' - ' + document.getElementById('pickupPincode').value;
+            document.getElementById('sumReceiver').textContent = document.getElementById('receiverName').value;
+            document.getElementById('sumReceiverPhone').textContent = document.getElementById('receiverPhone').value;
+            document.getElementById('sumDelivery').textContent = document.getElementById('deliveryAddress').value + ', ' + document.getElementById('deliveryCity').value + ' - ' + document.getElementById('deliveryPincode').value;
+            document.getElementById('sumPackageType').textContent = document.getElementById('packageType').value;
+            document.getElementById('sumWeight').textContent = document.getElementById('packageWeight').value + ' kg';
+            document.getElementById('sumService').textContent = document.getElementById('bookServiceType').value;
+            document.getElementById('sumDate').textContent = document.getElementById('pickupDate').value || 'As soon as possible';
+        }
+
+        // Handle form submission
+        const bookingForm = document.getElementById('bookingForm');
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBooking');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+            const formData = new FormData(bookingForm);
+
+            fetch(bookingForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(() => {
+                bookingForm.style.display = 'none';
+                document.querySelector('.booking-steps').style.display = 'none';
+                document.getElementById('bookingSuccess').style.display = 'block';
+                window.scrollTo({ top: 200, behavior: 'smooth' });
+            })
+            .catch(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Booking';
+                alert('Something went wrong. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>
