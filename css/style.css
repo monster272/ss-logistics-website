@@ -99,7 +99,7 @@ body {
     box-shadow: var(--box-shadow);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1050;
 }
 
 .navbar {
@@ -181,6 +181,8 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    z-index: 1100;
+    position: relative;
 }
 
 .hamburger span {
