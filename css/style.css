@@ -5,6 +5,33 @@
     box-sizing: border-box;
 }
 
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+input, button, select, textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 :root {
     --primary-color: #FF6B35;
     --secondary-color: #004E89;
@@ -231,7 +258,8 @@ body {
     padding: 15px;
     border: 2px solid #ddd;
     border-radius: var(--border-radius);
-    font-size: 1rem;
+    font-size: 16px;
+    background: #fff;
 }
 
 .track-input-group input:focus {
@@ -986,8 +1014,9 @@ section {
     padding: 12px;
     border: 2px solid #ddd;
     border-radius: var(--border-radius);
-    font-size: 1rem;
+    font-size: 16px;
     font-family: inherit;
+    background: #fff;
 }
 
 .contact-form input:focus,
@@ -1131,6 +1160,7 @@ section {
     background: var(--primary-color);
     color: #fff;
     border: none;
+    -webkit-appearance: none;
     border-radius: 50%;
     cursor: pointer;
     opacity: 0;
